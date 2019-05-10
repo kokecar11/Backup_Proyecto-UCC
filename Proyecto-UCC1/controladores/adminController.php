@@ -74,6 +74,8 @@
                                         "Texto"=>"El Profesor se registro con Exito!.",
                                         "Tipo"=>"success"
                                     ];
+
+                                    
                                 }else{
                                     mainModel::delete_account("$codigo");
                                     $alert=[
@@ -183,8 +185,56 @@
                 ';
             }
 
-
             $table.=' </tbody> </table> </div>';
+            //Paginacion antes
+            if($total>=1&&$pag<=$Npag){
+
+                $table.=' <nav class="text-center">
+                            <ul class="pagination pagination-sm">
+                        ';
+                if($pag==1){
+
+                    $table.='<li class="disabled">
+                             <a><i class="zmdi zmdi-arrow-left"></i>
+                             </a></li>';
+                }else{
+                    $table.='<li>
+                             <a href="'.SERVERURLL.'adminlist/'.($pag-1).'/">
+                                <i class="zmdi zmdi-arrow-left"></i>
+                             </a></li>';
+
+                }
+
+                for($i=1; $i<=$Npag; $i++){
+
+                    if($pag==$i){
+                        $table.='<li class="active">
+                             <a href="'.SERVERURLL.'adminlist/'.$i.'/">'.$i.'</a></li>';
+
+                    }else{
+                        $table.='<li>
+                             <a href="'.SERVERURLL.'adminlist/'.$i.'/">'.$i.'</a></li>';
+
+                    }
+                }
+
+                //Paginacion despues
+                if($pag==$Npag){
+
+                    $table.='<li class="disabled">
+                             <a><i class="zmdi zmdi-arrow-right"></i>
+                             </a></li>';
+                }else{
+                    $table.='<li>
+                    <a href="'.SERVERURLL.'adminlist/'.($pag+1).'/">
+                        <i class="zmdi zmdi-arrow-right"></i>
+                    </a></li>';
+
+                }
+
+                $table.='</ul></nav>';
+
+            }
 
             return $table;
 

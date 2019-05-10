@@ -43,19 +43,7 @@
                     echo $insAdmnn->pag_admin_controller($pag[1],10,$_SESSION['User_pucc'])
                  
                  
-                 ?>     
-  
-            <nav class="text-center">
-                <ul class="pagination pagination-sm">
-                    <li class="disabled"><a href="javascript:void(0)">«</a></li>
-                    <li class="active"><a href="javascript:void(0)">1</a></li>
-                    <li><a href="javascript:void(0)">2</a></li>
-                    <li><a href="javascript:void(0)">3</a></li>
-                    <li><a href="javascript:void(0)">4</a></li>
-                    <li><a href="javascript:void(0)">5</a></li>
-                    <li><a href="javascript:void(0)">»</a></li>
-                </ul>
-            </nav>
+                 ?>                  
         </div>
     </div>
 </div>

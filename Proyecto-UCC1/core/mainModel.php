@@ -33,23 +33,23 @@
             return $sql;
         }
 
-        protected function send_email($email, $nombre, $asunto, $cuerpo){
-            require_once '../PHPMailer/PHPMailerAutoload.php';
+        protected function send_email_activate($emailacc,$nombreacc,$passacc){
+            require './PHPMailer/PHPMailerAutoload.php';
             $mail = new PHPMailer();
             $mail->isSMTP();
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'tls'; //Modificar
-            $mail->Host = 'smtp.gmail.com'; //Modificar
+            $mail->Host = 'smtp.hostinger.co'; //Modificar
             $mail->Port = '587'; //Modificar
             
-            $mail->Username = 'muddapp11@gmail.com'; //Modificar
-            $mail->Password = 'c4rp1nt3r0'; //Modificar
+            $mail->Username = 'coordinador@proyectos-ucc.tk'; //Modificar
+            $mail->Password = 'admin123'; //Modificar
             
-            $mail->setFrom('correo emisor', 'nombre de correo emisor'); //Modificar
-            $mail->addAddress($email, $nombre);
+            $mail->setFrom('coordinador@proyectos-ucc.tk', 'Proyectos UCC'); //Modificar
+            $mail->addAddress($emailacc, $nombreacc);
             
-            $mail->Subject = $asunto;
-            $mail->Body    = $cuerpo;
+            $mail->Subject = 'Registro Completado en Proyectos UCC';
+            $mail->Body    = '<b>Bienvenido a Proyectos UCC</b><br>'.$nombreacc.' Tu Contraseña es: '.$passacc.'<br> Porfavor Logea y Modifica la Contraseña.';
             $mail->IsHTML(true);
             
             if($mail->send()){
@@ -103,6 +103,19 @@
 
         }
 
+
+        protected function add_group_model_stu1($datos){
+
+            $sql=self::connection()->prepare("UPDATE estudiante SET Grupos_Gp_cod=:codigo_gp1 WHERE Cuenta_Acc_cod1=:codigo_student1");
+                    $sql->bindParam(":codigo_gp1",$datos[':codigo_gp1']);
+                    $sql->bindParam(":codigo_student1",$datos[':codigo_student1']);
+                    $sql->execute();
+                    return $sql;
+
+
+        }
+
+
         public function encryption($string){
 			$output=FALSE;
 			$key=hash('sha256', SECRET_KEY);
@@ -118,13 +131,12 @@
 			return $output;
         }
         
-        protected function gen_cod_random($letras,$long){
+        protected function gen_cod_random($long){
             
             for($i = 1; $i<=$long; $i++){
                 $numero=rand(0,9);             
-                $letras.=$numero;
             }
-            return $letras;
+            return $numero;
 
         }
         protected function clean_cadn($cadena){

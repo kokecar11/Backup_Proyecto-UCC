@@ -34,9 +34,7 @@
                             ];
                         }else{
                             
-                            $gp_codigo=1;
-                            
-                            //$codgp=mainModel::gen_cod_random("CP",8);     
+                            $gp_codigo=mainModel::gen_cod_random(7);     
                             $data_grupo=[
                                 "gp_cod"=>"$gp_codigo",
                                 "gp_title"=>"$gp_title",
@@ -47,32 +45,32 @@
                             if($save_grupo->rowCount()>=1){
                                 //parte del modelo
                                 $data_grupo_stu1=[
-                                    "codigo_gp"=>"$gp_codigo",
-                                    "codigo_student"=>"$gp_stu1",
+                                    "codigo_gp1"=>"$gp_codigo",
+                                    "codigo_student1"=>"$gp_stu1",
                                 ];
                                 $data_grupo_stu2=[
-                                    "codigo_gp"=>"$gp_codigo",
-                                    "codigo_student"=>"$gp_stu2",
+                                    "codigo_gp2"=>"$gp_codigo",
+                                    "codigo_student2"=>"$gp_stu2",
                                 ];
                                 $data_grupo_asesor=[
                                     "codigo_gp"=>"$gp_codigo",
                                     "codigo_teach"=>"$gp_asesor",
                                 ];
                                 $data_grupo_jurado1=[
-                                    "codigo_gp"=>"$gp_codigo",
-                                    "codigo_jurado"=>"$gp_jurado1",
+                                    "codigo_gp1"=>"$gp_codigo",
+                                    "codigo_jurado1"=>"$gp_jurado1",
                                 ];
                                 $data_grupo_jurado2=[
-                                    "codigo_gp"=>"$gp_codigo",
-                                    "codigo_jurado"=>"$gp_jurado2",
+                                    "codigo_gp2"=>"$gp_codigo",
+                                    "codigo_jurado2"=>"$gp_jurado2",
                                 ];
                                
-                                $save_gp_model=groupModels::add_group_model_stu($data_grupo_stu1);
-                                $save_gp_model=groupModels::add_group_model_stu($data_grupo_stu2);
-                              /*  $save_gp_model=groupModels::add_group_model_teach($data_grupo_asesor);
-                                $save_gp_model=groupModels::add_group_model_jurado($data_grupo_jurado1);
-                                $save_gp_model=groupModels::add_group_model_jurado($data_grupo_jurado2);*/
-                                if($save_gp_model->rowCount()>=1){
+                               /* $save_gp_model=groupModels::add_group_model_stu1($data_grupo_stu1);
+                                $save_gp_model=groupModels::add_group_model_stu2($data_grupo_stu2);
+                                $save_gp_model=groupModels::add_group_model_teach($data_grupo_asesor);
+                                $save_gp_model=groupModels::add_group_model_jurado1($data_grupo_jurado1);
+                                $save_gp_model=groupModels::add_group_model_jurado2($data_grupo_jurado2);*/
+                                if(mainModel::add_group_model_stu1($data_grupo_stu1)){
                                     $alertgp=[
                                         "Alerta"=>"clean",
                                         "Titulo"=>"Grupo Creado",
