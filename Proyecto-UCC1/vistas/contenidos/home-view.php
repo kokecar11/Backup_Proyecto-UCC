@@ -22,7 +22,7 @@
             Profesores
         </div>
         <div class="full-box tile-icon text-center">
-            <i class="zmdi zmdi-male-alt"></i>
+            <i class="zmdi zmdi-account"></i>
         </div>
         <div class="full-box tile-number text-titles">
             <p class="full-box"><?php 
@@ -39,7 +39,7 @@
             Estudiantes
         </div>
         <div class="full-box tile-icon text-center">
-            <i class="zmdi zmdi-face"></i>
+            <i class="zmdi zmdi-account-box"></i>
         </div>
         <div class="full-box tile-number text-titles">
             <p class="full-box"><?php 

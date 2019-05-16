@@ -6,7 +6,7 @@
             $listWhite = ["admin","adminlist","adminsearch","catalog","category","categorylist",
             "student","studentlist","studentsearch","grouplist","group","home","login","myacc","mydata",
             "provider","providerlist","proyecto",
-            "proyectoconfig","proyectoinfo","search","forgotpass","events","eventos","Calendario","contact"];
+            "proyectoconfig","proyectoinfo","search","forgotpass","events","eventos","Calendario","contact","anteproyectof","report"];
 
             if(in_array($viewss,$listWhite)){
                 if(is_file("./vistas/contenidos/".$viewss."-view.php")){

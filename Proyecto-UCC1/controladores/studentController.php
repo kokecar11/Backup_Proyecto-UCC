@@ -69,15 +69,17 @@
                                     $stualert=[
                                         "Alerta"=>"clean",
                                         "Titulo"=>"Estudiante Registrado",
-                                        "Texto"=>"El Estudiante se registro con Exito!.",
+                                        "Texto"=>"El Estudiante se registro con Exito!. Verifique su Correo Institucional.",
                                         "Tipo"=>"success"
                                     ];
+
+                                    $mailstu=mainModel::send_email_activate($email,$names,$pass1);
                                 }else{
                                     mainModel::delete_account("$stucodigo");
                                     $stualert=[
                                         "Alerta"=>"simple",
                                         "Titulo"=>"Ocurrio un error Inesperado",
-                                        "Texto"=>"Los datos del Estudiante no se pudieron Registrar.",
+                                        "Texto"=>"Los datos del Estudiante no se pudieron registrar.",
                                         "Tipo"=>"error"
                                     ];
                                 }
@@ -173,13 +175,64 @@
             }else{
                 $tablestu.='
                     <tr>
-                        <td colspan="4">No hay registros en la Base de Datos.</td>
+                        <td colspan="4">No hay registros de Estudiantes en la Base de Datos.</td>
                     </tr>
                 ';
             }
 
 
             $tablestu.=' </tbody> </table> </div>';
+
+             //Paginacion antes
+             if($totalstu>=1&&$pagstu<=$Npagstu){
+
+                $tablestu.=' <nav class="text-center">
+                            <ul class="pagination pagination-sm">
+                        ';
+                if($pagstu==1){
+
+                    $tablestu.='<li class="disabled">
+                             <a><i class="zmdi zmdi-arrow-left"></i>
+                             </a></li>';
+                }else{
+                    $tablestu.='<li>
+                             <a href="'.SERVERURLL.'studentlist/'.($pagstu-1).'/">
+                                <i class="zmdi zmdi-arrow-left"></i>
+                             </a></li>';
+
+                }
+
+                for($i=1; $i<=$Npagstu; $i++){
+
+                    if($pagstu==$i){
+                        $tablestu.='<li class="active">
+                             <a href="'.SERVERURLL.'studentlist/'.$i.'/">'.$i.'</a></li>';
+
+                    }else{
+                        $tablestu.='<li>
+                             <a href="'.SERVERURLL.'studentlist/'.$i.'/">'.$i.'</a></li>';
+
+                    }
+                }
+
+                //Paginacion despues
+                if($pagstu==$Npagstu){
+
+                    $tablestu.='<li class="disabled">
+                             <a><i class="zmdi zmdi-arrow-right"></i>
+                             </a></li>';
+                }else{
+                    $tablestu.='<li>
+                    <a href="'.SERVERURLL.'studentlist/'.($pagstu+1).'/">
+                        <i class="zmdi zmdi-arrow-right"></i>
+                    </a></li>';
+
+                }
+
+                $tablestu.='</ul></nav>';
+
+            }
+
 
             return $tablestu;
 

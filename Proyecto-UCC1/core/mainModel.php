@@ -34,7 +34,7 @@
         }
 
         protected function send_email_activate($emailacc,$nombreacc,$passacc){
-            require './PHPMailer/PHPMailerAutoload.php';
+            require '../PHPMailer/PHPMailerAutoload.php';
             $mail = new PHPMailer();
             $mail->isSMTP();
             $mail->SMTPAuth = true;
@@ -45,18 +45,37 @@
             $mail->Username = 'coordinador@proyectos-ucc.tk'; //Modificar
             $mail->Password = 'admin123'; //Modificar
             
-            $mail->setFrom('coordinador@proyectos-ucc.tk', 'Proyectos UCC'); //Modificar
+            $mail->setFrom('coordinador@proyectos-ucc.tk', 'Coordinador de Proyectos UCC'); //Modificar
             $mail->addAddress($emailacc, $nombreacc);
             
-            $mail->Subject = 'Registro Completado en Proyectos UCC';
-            $mail->Body    = '<b>Bienvenido a Proyectos UCC</b><br>'.$nombreacc.' Tu Contraseña es: '.$passacc.'<br> Porfavor Logea y Modifica la Contraseña.';
+            $mail->Subject= 'Registro Completado en Proyectos UCC';
+            $mail->Body= '<big><b>Bienvenido a Proyectos UCC de la Facultad de Ingenieria de Sistemas.</b></big><br><b>'.$nombreacc.'</b> Tu Contraseña es: <b>'.$passacc.'</b> <br> Porfavor Logea y Modifica la Contraseña.';
             $mail->IsHTML(true);
             
-            if($mail->send()){
-                return true;
-            }else{
-                return false;
-            }            
+            $mail->send();        
+        }
+        protected function send_email_activate_gp($emailacc,$nombreacc,$nombregp,$codigogp){
+            require '../PHPMailer/PHPMailerAutoload.php';
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'tls'; //Modificar
+            $mail->Host = 'smtp.hostinger.co'; //Modificar
+            $mail->Port = '587'; //Modificar
+            
+            $mail->Username = 'coordinador@proyectos-ucc.tk'; //Modificar
+            $mail->Password = 'admin123'; //Modificar
+            
+            $mail->setFrom('coordinador@proyectos-ucc.tk', 'Coordinador de Proyectos UCC'); //Modificar
+            $mail->addAddress($emailacc, $nombreacc);
+            
+            $mail->Subject= 'Registro Completado de su Grupo de Proyectos UCC';
+            $mail->Body= '<big><b>Bienvenido a Proyectos UCC de la Facultad de Ingenieria de Sistemas.</b></big><br>
+                          <b>'.$nombreacc.'</b> Su Grupo fue Creado Satisfactoriamente. <br>Nombre del Proyecto: <b>'.$nombregp.'</b> 
+                          <br>Codigo de Grupo: <b>'.$codigogp.'</b> .';
+            $mail->IsHTML(true);
+            
+            $mail->send();        
         }
 
         protected function add_account($datos){
@@ -84,13 +103,13 @@
 
         }
 
-
         protected function add_group($grupo){
             
-            $sql = self::connection()->prepare("INSERT INTO  grupos (Gp_cod,Gp_title,Gp_type) VALUES(:gp_cod,:gp_title,:gp_types)");
+            $sql = self::connection()->prepare("INSERT INTO  grupos (Gp_cod,Gp_title,Gp_type,Gp_estado) VALUES(:gp_cod,:gp_title,:gp_types,:gp_estado)");
             $sql-> bindParam(":gp_cod",$grupo['gp_cod']); 
             $sql-> bindParam(":gp_title",$grupo['gp_title']); 
             $sql-> bindParam(":gp_types",$grupo['gp_types']); 
+            $sql-> bindParam(":gp_estado",$grupo['gp_estado']); 
             $sql->execute();
             return $sql;
         }
@@ -103,18 +122,19 @@
 
         }
 
-
-        protected function add_group_model_stu1($datos){
-
-            $sql=self::connection()->prepare("UPDATE estudiante SET Grupos_Gp_cod=:codigo_gp1 WHERE Cuenta_Acc_cod1=:codigo_student1");
-                    $sql->bindParam(":codigo_gp1",$datos[':codigo_gp1']);
-                    $sql->bindParam(":codigo_student1",$datos[':codigo_student1']);
-                    $sql->execute();
-                    return $sql;
-
+        protected function add_event_group($bitacora_eventos){
+            $sql =self::connection()->prepare("INSERT INTO bitacora_eventos (Bit_codigo,Bit_title,Bit_descripcion,Bit_horainit,Bit_horafinish,Grupos_Gp_cod) VALUES (:bit_codigo,:bit_title,:bit_descripcion,:bit_horainit,:bit_horafinish,:grupos_Gp_cod)");
+            $sql-> bindParam(":bit_codigo",$bitacora_eventos['bit_codigo']); 
+            $sql-> bindParam(":bit_title",$bitacora_eventos['bit_title']);  
+            $sql-> bindParam(":bit_descripcion",$bitacora_eventos['bit_descripcion']); 
+            $sql-> bindParam(":bit_horainit",$bitacora_eventos['bit_horainit']); 
+            $sql-> bindParam(":bit_horafinish",$bitacora_eventos['bit_horafinish']); 
+            //$sql-> bindParam(":bit_subido",$bitacora_eventos['bit_subido']); 
+            $sql-> bindParam(":grupos_Gp_cod",$bitacora_eventos['grupos_Gp_cod']); 
+            $sql->execute();
+            return $sql;
 
         }
-
 
         public function encryption($string){
 			$output=FALSE;
@@ -131,12 +151,13 @@
 			return $output;
         }
         
-        protected function gen_cod_random($long){
+        protected function gen_cod_random($letra,$long){
             
             for($i = 1; $i<=$long; $i++){
-                $numero=rand(0,9);             
+                $numero=rand(0,9); 
+                $letra.=$numero;            
             }
-            return $numero;
+            return $letra;
 
         }
         protected function clean_cadn($cadena){

@@ -34,17 +34,24 @@
 <div class="container-fluid">
     <div class="panel panel-success">
         <div class="panel-heading">
-            <h3 class="panel-title"><i class="zmdi zmdi-format-list-bulleted"></i> &nbsp; LISTA DE PROFESORES</h3>
+            <h3 class="panel-title"><i class="zmdi zmdi-format-list-bulleted"></i> &nbsp; LISTA DE PROFESORES</h3>       
         </div>
         <div class="panel-body">
+        <form action = "<?php echo SERVERURLL;?>" method = "POST" data-form = "save" class="FormularioAjax" autocomplete="off" enctype="multipart/form-data">
           
                  <?php
                     $pag= explode("/",$_GET['views']);
-                    echo $insAdmnn->pag_admin_controller($pag[1],10,$_SESSION['User_pucc'])
-                 
-                 
+                    echo $insAdmnn->pag_admin_controller($pag[1],10,$_SESSION['User_pucc'],"");                 
                  ?>                  
         </div>
+        <br>
+                <p class="text-center" style="margin-top: 20px;">
+                <a href="#!" class="btn btn-success btn-raised btn-xs"> Imprimir Listado
+                                    <i class="zmdi zmdi-download"></i>
+                                </a>
+                </p>
+                <div class="RespuestaAjax"></div>
+        </form>
     </div>
 </div>
 

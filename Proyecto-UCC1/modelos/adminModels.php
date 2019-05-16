@@ -18,16 +18,6 @@
 
             }
 
-            protected function add_jurado_model($datos){
-
-                $sql=mainModel::connection()->prepare("INSERT INTO jurado (Cuenta_Acc_cod) VALUES(:jurado_cod)");
-                $sql->bindParam(":jurado_cod",$datos['jurado_cod']);
-                $sql->execute();
-                return $sql;
-
-
-
-            }
 
 
             protected function data_coord_model($tipo,$codigo_admn){

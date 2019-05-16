@@ -12,7 +12,8 @@
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
 					<img src="<?php echo SERVERURLL?>vistas/assets/avatars/AdminMaleAvatar.png" alt="UserIcon">
-					<figcaption class="text-center text-titles">User Name</figcaption>
+					<figcaption class="text-center text-titles"><?php echo $_SESSION['NameUser_pucc'].' '.
+                        $_SESSION['LastNameUser_pucc'];?></figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
 					<li>

@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="page-header">
-        <h1 class="text-titles"><i class="zmdi zmdi-wrench zmdi-hc-fw"></i> GESTIÓN DE LIBRO</small></h1>
+        <h1 class="text-titles"><i class="zmdi zmdi-wrench zmdi-hc-fw"></i> GESTIÓN DE PROYECTO</small></h1>
     </div>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptas reiciendis tempora voluptatum eius porro ipsa quae voluptates officiis sapiente sunt dolorem, velit quos a qui nobis sed, dignissimos possimus!</p>
+    <p class="lead">Gestion de Proyecto</p>
 </div>
 
 <!-- Tabla de adjuntos -->
@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<!-- Panel actualizar libro -->
+<!-- Panel actualizar libro
 <div class="container-fluid">
     <div class="panel panel-success">
         <div class="panel-heading">
@@ -222,9 +222,9 @@
             </form>
         </div>
     </div>
-</div>
+</div> 
 
-<!-- Panel eliminar libro -->
+Panel eliminar libro 
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12">
@@ -248,4 +248,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->

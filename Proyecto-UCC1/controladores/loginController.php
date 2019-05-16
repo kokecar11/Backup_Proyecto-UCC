@@ -27,6 +27,8 @@
 
                         session_start(['name'=>'PUCC']);
                         $_SESSION['User_pucc']=$row['Acc_account'];
+                        $_SESSION['NameUser_pucc']=$row['Acc_names'];
+                        $_SESSION['LastNameUser_pucc']=$row['Acc_lastnames'];
                         $_SESSION['Type_pucc']=$row['Acc_type'];
                         $_SESSION['Privi_pucc']=$row['Acc_privi'];
                         //$_SESSION['Photo_pucc']=$row['Acc_photo']; aqui se pone lo de la foto.

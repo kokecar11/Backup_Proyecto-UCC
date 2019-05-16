@@ -16,6 +16,7 @@
                 $email=mainModel::clean_cadn($_POST['email-reg']);
                 $pass1=mainModel::clean_cadn($_POST['password1-reg']);
                 $pass2=mainModel::clean_cadn($_POST['password2-reg']);
+                $cuentat=$email;
                     if($pass1!=$pass2){
                         $alert=[
                             "Alerta"=>"simple",
@@ -24,9 +25,10 @@
                             "Tipo"=>"error"
                         ];
                     }else{
+                        $email.="@ucatolica.edu.co";
                         
                         if($email!=""){
-                            $consult=mainModel::exe_query_simple("SELECT Acc_email FROM cuenta WHERE Acc_email='$email@ucatolica.edu.co'");
+                            $consult=mainModel::exe_query_simple("SELECT Acc_email FROM cuenta WHERE Acc_email='$email'");
                             $ec = $consult->rowCount();
                         }else{
                             $ec=0;
@@ -40,16 +42,16 @@
                             ];
                         }else{
 
-                            
+                            //$pass1 = substr( md5(microtime()), 1, 8);
                             $clave=mainModel::encryption($pass1);
                             
                             
                             $data_acc=[
                                 "codigo"=>"$codigo",
-                                "acuenta"=>"$email",
+                                "acuenta"=>"$cuentat",
                                 "names"=>"$names",
                                 "lastnames"=>"$lastnames",
-                                "email"=>"$email@ucatolica.edu.co",
+                                "email"=>"$email",
                                 "pass"=>"$clave",
                                 "estado"=>1,
                                 "types"=>"Profesor",
@@ -61,27 +63,23 @@
                                 $data_adm=[
                                     "prof_cod"=>"$codigo",
                                 ];
-                                $data_jurado=[
-                                    "jurado_cod"=>"$codigo",
-                                ];
-                            
+                               
                                 $save_adm=adminModels::add_coord_model($data_adm);
-                                $save_adm=adminModels::add_jurado_model($data_jurado);
                                 if($save_adm->rowCount()>=1){
                                     $alert=[
                                         "Alerta"=>"clean",
                                         "Titulo"=>"Profesor Registrado",
-                                        "Texto"=>"El Profesor se registro con Exito!.",
+                                        "Texto"=>"El Profesor se registro con Exito!. Verifique su Correo Institucional.",
                                         "Tipo"=>"success"
                                     ];
-
+                                    $mail=mainModel::send_email_activate($email,$names,$pass1);
                                     
                                 }else{
                                     mainModel::delete_account("$codigo");
                                     $alert=[
                                         "Alerta"=>"simple",
                                         "Titulo"=>"Ocurrio un error Inesperado",
-                                        "Texto"=>"Los datos de Profesor no se pudieron Registrar.",
+                                        "Texto"=>"Los datos de Profesor no se pudieron registrar.",
                                         "Tipo"=>"error"
                                     ];
                                 }
@@ -103,24 +101,34 @@
 
         //Controlador para Paginar 
 
-        public function pag_admin_controller($pag,$reg,$codd){
+        public function pag_admin_controller($pag,$reg,$codd,$search){
 
             $pag=mainModel::clean_cadn($pag);
             $reg=mainModel::clean_cadn($reg);
         
             $codd=mainModel::clean_cadn($codd);
+            $search=mainModel::clean_cadn($search);
             $table="";
 
             $pag= (isset($pag)&& $pag>0) ? (int)$pag:1;
             $initpg=($pag>0) ? (($pag*$reg)-$reg): 0;
 
+            if(isset($search)&& $search!=""){
+                $consult_t="SELECT SQL_CALC_FOUND_ROWS Acc_cod,Acc_names,Acc_lastnames,Acc_email FROM cuenta 
+                WHERE ((Acc_type='Profesor') AND (Acc_cod LIKE '%$search%')) ORDER BY Acc_names ASC LIMIT $initpg,$reg";
+
+                $pagurlt = "adminsearch";
+            }else{
+                $consult_t="SELECT SQL_CALC_FOUND_ROWS Acc_cod,Acc_names,Acc_lastnames,Acc_email FROM cuenta 
+                WHERE Acc_type='Profesor' ORDER BY Acc_names ASC LIMIT $initpg,$reg";
+                $pagurlt = "adminlist";
+            }
+
             $connect=mainModel::connection();
 
             /*$datas=$connect->query("SELECT SQL_CALC_FOUND_ROWS Acc_cod,Acc_names,Acc_lastnames,Acc_email FROM cuenta 
                                 WHERE Acc_cod!='$codd' ORDER BY Acc_names ASC LIMIT $initpg,$reg");*/
-            $datas=$connect->query("SELECT SQL_CALC_FOUND_ROWS Acc_cod,Acc_names,Acc_lastnames,Acc_email FROM cuenta 
-                                WHERE Acc_type='Profesor' ORDER BY Acc_names ASC LIMIT $initpg,$reg");
-
+            $datas=$connect->query($consult_t);
             $datas=$datas->fetchAll();
 
             $total=$connect->query("SELECT FOUND_ROWS()");
@@ -180,7 +188,7 @@
             }else{
                 $table.='
                     <tr>
-                        <td colspan="4">No hay Registros!</td>
+                        <td colspan="4">No hay registros de Profesores en la Base de Datos.</td>
                     </tr>
                 ';
             }
@@ -199,7 +207,7 @@
                              </a></li>';
                 }else{
                     $table.='<li>
-                             <a href="'.SERVERURLL.'adminlist/'.($pag-1).'/">
+                             <a href="'.SERVERURLL.$pagurlt.'/'.($pag-1).'/">
                                 <i class="zmdi zmdi-arrow-left"></i>
                              </a></li>';
 
@@ -209,11 +217,11 @@
 
                     if($pag==$i){
                         $table.='<li class="active">
-                             <a href="'.SERVERURLL.'adminlist/'.$i.'/">'.$i.'</a></li>';
+                             <a href="'.SERVERURLL.$pagurlt.'/'.$i.'/">'.$i.'</a></li>';
 
                     }else{
                         $table.='<li>
-                             <a href="'.SERVERURLL.'adminlist/'.$i.'/">'.$i.'</a></li>';
+                             <a href="'.SERVERURLL.$pagurlt.'/'.$i.'/">'.$i.'</a></li>';
 
                     }
                 }
@@ -226,7 +234,7 @@
                              </a></li>';
                 }else{
                     $table.='<li>
-                    <a href="'.SERVERURLL.'adminlist/'.($pag+1).'/">
+                    <a href="'.SERVERURLL.$pagurlt.'/'.($pag+1).'/">
                         <i class="zmdi zmdi-arrow-right"></i>
                     </a></li>';
 
@@ -240,6 +248,10 @@
 
 
         }
+
+
+
+        
 
 
         public function data_admin_controller($tipo,$codigo_admn){
