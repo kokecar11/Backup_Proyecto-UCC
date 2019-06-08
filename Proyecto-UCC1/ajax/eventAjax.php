@@ -2,7 +2,17 @@
 
     $petiAjax=true;
     require_once "../core/configGeneral.php";
-    if(isset($_POST['cod-gpevent'])){
+
+
+   /* if(isset($_POST['cod-gpevent'])){
+        require_once "../controladores/eventController.php";
+        $insEvent = new eventController();
+
+        if(isset($_POST['cod-gpevent'])){
+            echo $insEvent->search_event_gp();
+        }
+    }*/
+    if(isset($_POST['title_event'])){
         require_once "../controladores/eventController.php";
         $insEvent = new eventController();
 
@@ -10,7 +20,6 @@
             echo $insEvent->init_event_controller();
         }
         
-
     }else{
         session_start();
         session_destroy();

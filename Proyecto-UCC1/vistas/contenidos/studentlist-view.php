@@ -26,7 +26,7 @@
 </div>
 <?php 
     require_once "./controladores/studentController.php";
-    $insAdmnn= new studentController();
+    $insstudent= new studentController();
 
 ?> 
 
@@ -40,7 +40,7 @@
                 
                 <?php
                     $pag= explode("/",$_GET['views']);
-                    echo $insAdmnn->pag_admin_controller($pag[1],10,$_SESSION['User_pucc'])
+                    echo $insstudent->pag_student_controller($pag[1],10,$_SESSION['User_pucc'],"")
                 
                 
                 ?>     

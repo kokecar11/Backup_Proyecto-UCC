@@ -16,8 +16,6 @@
                     $gp_stu1=mainModel::clean_cadn($_POST['Estudiante1-reg']);
                     $gp_stu2=mainModel::clean_cadn($_POST['Estudiante2-reg']);
                     $gp_asesor=mainModel::clean_cadn($_POST['Asesor-reg']);
-                    $gp_jurado1=mainModel::clean_cadn($_POST['Jurado1-reg']);
-                    $gp_jurado2=mainModel::clean_cadn($_POST['Jurado2-reg']);
 
                     //Query sacar todo de la tabla estudiante
                     $querystu1=mainModel::exe_query_simple("SELECT * FROM estudiante WHERE Cuenta_Acc_cod1='$gp_stu1'");
@@ -80,14 +78,40 @@
                                         "Grupos_Gp_cod"=>$gp_codigo
                                     ];
 
+
+                                    $data_gp_asesor=[
+                                            "prof_cod"=>$gp_asesor,
+                                            "prof_gpcod"=>$gp_codigo,
+                                            "prof_califica"=>"0"
+                                    ];
+                                    $idformato=rand(1,10000);
+                                    $data_gp_af=[
+                                        "idformatos"=>$idformato,
+                                        "gp_codf"=>$gp_codigo,
+                                        "recom_f"=>NULL
+                                    ];
+
                                     $save_gp_stu=groupModels::add_group_model_stu1($data_gp_stu1);
-                                    $save_gp_stu=groupModels::add_group_model_stu1($data_gp_stu2);  
-                
-                                if($save_gp_stu){
+                                    $save_gp_stu=groupModels::add_group_model_stu1($data_gp_stu2);
+                                    $save_gpasesor=groupModels::add_group_model_teach($data_gp_asesor);
+                                    $save_gpaf=groupModels::add_group_model_aformato($data_gp_af);
+                                    
+                                    for($idtopico=1;$idtopico<=18;$idtopico++){
+
+                                        $data_gp_fore=[
+                                            "idFormatoA"=>$idtopico,
+                                            "id_formato"=>$idformato,
+                                            "cumple_f"=>NULL,
+                                            "recom_fe"=>NULL
+                                        ];
+                                        $save_gp_fore=groupModels::add_group_model_formato_eva($data_gp_fore);
+                                    }
+                                                  
+                                if($save_gp_stu&&$save_gpasesor&&$save_gpaf){
                                     $alertgp=[
                                         "Alerta"=>"clean",
                                         "Titulo"=>"Grupo Creado",
-                                        "Texto"=>"El Grupo se registro con Exito!. Verifique el Correo institucional.",
+                                        "Texto"=>"El Grupo se registro con Exito!.".$emailstu1." Verifique el Correo institucional.",
                                         "Tipo"=>"success"
                                     ];
                                     

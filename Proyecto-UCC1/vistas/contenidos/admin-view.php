@@ -65,7 +65,6 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-6">
-                            
                                 <div class="form-group label-floating">
                                     <label class="control-label">Nombre de Usuario institucional*</label>
                                     <input class="form-control" type="text" name="email-reg" required="" maxlength="50">

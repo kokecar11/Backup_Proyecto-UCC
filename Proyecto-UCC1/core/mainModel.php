@@ -39,13 +39,13 @@
             $mail->isSMTP();
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'tls'; //Modificar
-            $mail->Host = 'smtp.hostinger.co'; //Modificar
-            $mail->Port = '587'; //Modificar
+            $mail1->Host = 'smtp.gmail.com'; //Modificar
+            $mail1->Port = '587'; //Modificar
             
-            $mail->Username = 'coordinador@proyectos-ucc.tk'; //Modificar
-            $mail->Password = 'admin123'; //Modificar
+            $mail1->Username = 'coordinadorucc@gmail.com'; //Modificar
+            $mail1->Password = 'Admin123_'; //Modificar
             
-            $mail->setFrom('coordinador@proyectos-ucc.tk', 'Coordinador de Proyectos UCC'); //Modificar
+            $mail1->setFrom('coordinadorucc@gmail.com', 'Coordinador de Proyectos UCC'); //Modificar
             $mail->addAddress($emailacc, $nombreacc);
             
             $mail->Subject= 'Registro Completado en Proyectos UCC';
@@ -54,28 +54,79 @@
             
             $mail->send();        
         }
-        protected function send_email_activate_gp($emailacc,$nombreacc,$nombregp,$codigogp){
+        protected function send_email_activate_gp($emailaccgp,$nombreaccgp,$nombregp,$codigogp){
             require '../PHPMailer/PHPMailerAutoload.php';
-            $mail = new PHPMailer();
-            $mail->isSMTP();
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = 'tls'; //Modificar
-            $mail->Host = 'smtp.hostinger.co'; //Modificar
-            $mail->Port = '587'; //Modificar
+            $mail1 = new PHPMailer();
+            $mail1->isSMTP();
+            $mail1->SMTPAuth = true;
+            $mail1->SMTPSecure = 'tls'; //Modificar
+            $mail1->Host = 'smtp.gmail.com'; //Modificar
+            $mail1->Port = '587'; //Modificar
             
-            $mail->Username = 'coordinador@proyectos-ucc.tk'; //Modificar
-            $mail->Password = 'admin123'; //Modificar
+            $mail1->Username = 'coordinadorucc@gmail.com'; //Modificar
+            $mail1->Password = 'Admin123_'; //Modificar
             
-            $mail->setFrom('coordinador@proyectos-ucc.tk', 'Coordinador de Proyectos UCC'); //Modificar
-            $mail->addAddress($emailacc, $nombreacc);
+            $mail1->setFrom('coordinadorucc@gmail.com', 'Coordinador de Proyectos UCC');//Modificar
+            $mail1->addAddress($emailaccgp, $nombreaccgp);
             
-            $mail->Subject= 'Registro Completado de su Grupo de Proyectos UCC';
-            $mail->Body= '<big><b>Bienvenido a Proyectos UCC de la Facultad de Ingenieria de Sistemas.</b></big><br>
-                          <b>'.$nombreacc.'</b> Su Grupo fue Creado Satisfactoriamente. <br>Nombre del Proyecto: <b>'.$nombregp.'</b> 
+            $mail1->Subject= 'Registro Completado de su Grupo de Proyectos UCC';
+            $mail1->Body= '<big><b>Bienvenido a Proyectos UCC de la Facultad de Ingenieria de Sistemas.</b></big><br>
+                          <b>'.$nombreaccgp.'</b> Su Grupo fue Creado Satisfactoriamente. <br>Nombre del Proyecto: <b>'.$nombregp.'</b> 
                           <br>Codigo de Grupo: <b>'.$codigogp.'</b> .';
-            $mail->IsHTML(true);
+            $mail1->IsHTML(true);
             
-            $mail->send();        
+            $mail1->send();        
+        }
+
+        protected function send_email_event_gp($emailaccev,$nombreaccev,$nombregpev,$codigogpev,$fechainit,$fechafin,$desc_event){
+            require '../PHPMailer/PHPMailerAutoload.php';
+            $mail2 = new PHPMailer();
+            $mail2->isSMTP();
+            $mail2->SMTPAuth = true;
+            $mail2->SMTPSecure = 'tls'; //Modificar
+            $mail2->Host = 'smtp.gmail.com'; //Modificar
+            $mail2->Port = '587'; //Modificar
+            
+            $mail2->Username = 'coordinadorucc@gmail.com'; //Modificar
+            $mail2->Password = 'Admin123_'; //Modificar
+            
+            $mail2->setFrom('coordinadorucc@gmail.com', 'Coordinador de Proyectos UCC'); //Modificar
+            $mail2->addAddress($emailaccev, $nombreaccev);
+            
+            $mail2->Subject= 'Registro Completado del Evento de su Grupo de Proyectos UCC';
+            $mail2->Body= '<big><b>Bienvenido a Proyectos UCC de la Facultad de Ingenieria de Sistemas.</b></big><br>
+                          <b>'.$nombreaccev.'</b> Se ha creado un Evento para su grupo. 
+                          <br>Nombre del Grupo: <b>'.$nombregpev.'</b> 
+                          <br>Codigo de Grupo: <b>'.$codigogpev.'</b> 
+                          <br>Fecha de inicio de Evento: <b>'.$fechainit.'</b>
+                          <br>Fecha de Fin de Evento: <b>'.$fechafin.'</b>.
+                          <br>Descripcion del Evento: <b>'.$desc_event.'</b>.';
+            $mail2->IsHTML(true);
+            
+            $mail2->send();        
+        }
+
+
+        protected function send_email($email_emisor,$nombre_emisor,$email_receptor,$nombre_receptor,$subject_e,$body_e){
+            require '../PHPMailer/PHPMailerAutoload.php';
+            $mail3 = new PHPMailer();
+            $mail3->SMTPAuth = true;
+            $mail3->SMTPSecure = 'tls'; //Modificar
+            $mail3->Host = 'smtp.gmail.com'; //Modificar
+            $mail3->Port = 587; //Modificar
+            
+            /*$mail->Username = 'coordinador@proyectos-ucc.tk'; //Modificar
+            $mail->Password = 'admin123'; //Modificar
+            */
+            //$mail->setFrom('coordinador@proyectos-ucc.tk', 'Coordinador de Proyectos UCC');
+            $mail3->setFrom($email_emisor , $nombre_emisor); //Modificar
+            $mail3->addAddress($email_receptor, $nombre_receptor);
+            
+            $mail3->Subject= $subject_e;
+            $mail3->Body= $body_e;
+            $mail3->IsHTML(true);
+            
+            $mail3->send();        
         }
 
         protected function add_account($datos){
@@ -101,6 +152,17 @@
             $sql->execute();
             return $sql;
 
+        }
+
+
+        protected function add_jurados_model($datos){
+        
+            $sql=self::connection()->prepare("INSERT INTO profesor (Cuenta_Acc_cod,Grupos_Gp_cod,Profesor_califica) VALUES(:prof_cod,:prof_gpcod,:prof_califica)");
+            $sql->bindParam(":prof_cod",$datos['prof_cod']);
+            $sql->bindParam(":prof_gpcod",$datos['prof_gpcod']);
+            $sql->bindParam(":prof_califica",$datos['prof_califica']);
+            $sql->execute();
+            return $sql;
         }
 
         protected function add_group($grupo){
@@ -134,6 +196,23 @@
             $sql->execute();
             return $sql;
 
+        }
+
+        protected function delete_event_group($bitacora_eventos){
+            $sql =self::connection()->prepare("DELETE FROM bitacora_eventos WHERE Grupos_Gp_cod=:event_codgp");
+            $sql-> bindParam(":event_codgp",$bitacora_eventos);
+            $sql->execute();
+            return $sql;
+
+        }
+
+        protected function add_file_group($archivos){
+            $sqlfile =self::connection()->prepare("INSERT INTO archivos (File_names,File_doc,Grupos_Gp_cod) VALUES (:file_names,:file_doc,:filegp_cod)");
+            $sqlfile-> bindParam(":file_names",$archivos['file_names']); 
+            $sqlfile-> bindParam(":file_doc",$archivos['file_doc']); 
+            $sqlfile-> bindParam(":filegp_cod",$archivos['filegp_cod']); 
+            $sqlfile->execute();
+            return $sqlfile;
         }
 
         public function encryption($string){

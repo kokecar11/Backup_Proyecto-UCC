@@ -26,11 +26,14 @@
                         $row=$datos_account->fetch();
 
                         session_start(['name'=>'PUCC']);
+                        $_SESSION['Cod_pucc']=$row['Acc_cod'];
                         $_SESSION['User_pucc']=$row['Acc_account'];
                         $_SESSION['NameUser_pucc']=$row['Acc_names'];
                         $_SESSION['LastNameUser_pucc']=$row['Acc_lastnames'];
+                        $_SESSION['Email_pucc']=$row['Acc_email'];
                         $_SESSION['Type_pucc']=$row['Acc_type'];
                         $_SESSION['Privi_pucc']=$row['Acc_privi'];
+                        
                         //$_SESSION['Photo_pucc']=$row['Acc_photo']; aqui se pone lo de la foto.
                         $_SESSION['token_pucc']=md5(uniqid(mt_rand(),true));
 
@@ -38,9 +41,9 @@
                             $url=SERVERURLL."home/";
 
                         }elseif($row['Acc_type']=="Profesor"){
-                            $url=SERVERURLL."home/";
+                            $url=SERVERURLL."anteproyectof/";
                         }else{
-                            $url=SERVERURLL."student/";
+                            $url=SERVERURLL."dashboardStudent/";
                         }
                         return $urlLocation='<script> window.location="'.$url.'"</script>';
 

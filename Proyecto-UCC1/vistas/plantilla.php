@@ -9,22 +9,16 @@
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 	<!--Calendar Scripts -->
        
-	<script src="<?php echo SERVERURLL?>vistas/js/sweetalert2.min.js"></script>
-	<script src="<?php echo SERVERURLL?>vistas/js/jquery-3.1.1.min.js"></script>
-	<script src="<?php echo SERVERURLL?>vistas/js/bootstrap.min.js"></script>
-	<script src="<?php echo SERVERURLL?>vistas/js/material.min.js"></script>
-	<script src="<?php echo SERVERURLL?>vistas/js/ripples.min.js"></script>
-	<script src="<?php echo SERVERURLL?>vistas/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="<?=$base_url?>js/jquery.min.js"></script>
-	
-        <script src="<?=$base_url?>js/moment.js"></script>
-		<script src="<?$base_url?>js/bootstrap-datetimepicker.js"></script>
-		<link rel="stylesheet" href="<?=$base_url?>css/bootstrap-datetimepicker.min.css"/>
-       <script src="<?=$base_url?>js/bootstrap-datetimepicker.es.js"></script>
+	<script src="<?php echo SERVERURLL;?>vistas/js/sweetalert2.min.js"></script>
+	<script src="<?php echo SERVERURLL;?>vistas/js/jquery-3.1.1.min.js"></script>
+	<script src="<?php echo SERVERURLL;?>vistas/js/bootstrap.min.js"></script>
+	<script src="<?php echo SERVERURLL;?>vistas/js/material.min.js"></script>
+	<script src="<?php echo SERVERURLL;?>vistas/js/ripples.min.js"></script>
+	<script src="<?php echo SERVERURLL;?>vistas/js/jquery.mCustomScrollbar.concat.min.js"></script>
 
 	<script>
 		$.material.init();
-</script>
+	</script>
 
 </head>
 <body>
@@ -58,10 +52,10 @@
 	<?php endif; ?>
 	<!--<?php include "./vistas/modulos/script.php"; ?>-->
 
-	<link rel="stylesheet" href="<?=$base_url?>css/calendar.css"/>
-	<script src="<?php echo SERVERURLL?>vistas/js/sweetalert2.min.js"></script>
-	<script src="<?php echo SERVERURLL?>vistas/js/main.js"></script>
-	<script type="text/javascript" src="<?=$base_url?>js/es-ES.js"></script>
-	
+
+
+	<script src="<?php echo SERVERURLL;?>vistas/js/sweetalert2.min.js"></script>
+	<script src="<?php echo SERVERURLL;?>vistas/js/main.js"></script>
+
 </body>
 </html>

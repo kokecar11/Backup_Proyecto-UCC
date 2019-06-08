@@ -4,9 +4,7 @@
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
 				<!--<li>
-					<a href="<?php echo SERVERURLL;?>search/" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
+					
 				</li>-->
 				<li>
 					<a href="<?php echo SERVERURLL;?>contact/" class="btn-search">

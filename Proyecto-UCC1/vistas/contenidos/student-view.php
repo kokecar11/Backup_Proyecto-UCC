@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6">
                                 <div class="form-group label-floating">
-                                    <label class="control-label">Codigo *</label>
+                                    <label class="control-label">Código *</label>
                                     <input pattern="[0-9-]{1,10}" class="form-control" type="text" name="stu-cod-reg" required="" maxlength="9">
                                 </div>
                             </div>

@@ -35,6 +35,9 @@
 			</div>
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
+			<?php 
+				if($_SESSION['Type_pucc']=="Coordinador"){
+			?>
 				<li>
 					<a href="<?php echo SERVERURLL?>home/">
 						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Dashboard
@@ -51,12 +54,6 @@
 						<li>
 							<a href="<?php echo SERVERURLL?>events/"><i class="zmdi zmdi-calendar zmdi-hc-fw"></i> Eventos</a>
 						</li>
-						<!--<li>
-							<a href="http://localhost/Proyecto-UCC/Calendario/indexcalendario.php"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Proveedores</a>
-						</li>
-						<li>
-							<a href="<?php echo SERVERURLL?>proyecto/"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Nuevo libro</a>
-						</li>-->
 					</ul>
 				</li>
 				<li>
@@ -71,22 +68,48 @@
 							<a href="<?php echo SERVERURLL?>student/"><i class="zmdi zmdi-assignment-account zmdi-hc-fw"></i>Estudiantes</a>
 						</li>
 					</ul>
+					<?php 
+					}elseif($_SESSION['Type_pucc']=="Estudiante"){
+							?>
+					<li>
+					<a href="<?php echo SERVERURLL?>dashboardStudent/">
+						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Mi Dashboard
+					</a>
+					</li>
 					<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-book-image zmdi-hc-fw"></i> Mi Grupo <i class="zmdi zmdi-caret-down pull-right"></i>
+						<i class="zmdi zmdi-accounts-list-alt zmdi-hc-fw"></i> Mi Grupo <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-							<a href="<?php echo SERVERURLL?>proyecto/"><i class="zmdi zmdi-account zmdi-hc-fw"></i>Proyecto</a>
+							<a href="<?php echo SERVERURLL?>proyecto/"><i class="zmdi zmdi-folder zmdi-hc-fw"></i>Gestión Proyecto</a>
 						</li>
+					</ul>
+					<ul class="list-unstyled full-box">
 						<li>
-							<a href="<?php echo SERVERURLL?>proyectoconfig/"><i class="zmdi zmdi-assignment-account zmdi-hc-fw"></i>Gestion Proyecto</a>
+							<a href="<?php echo SERVERURLL?>dashboardStudent/"><i class="zmdi zmdi-folder zmdi-hc-fw"></i>Dashboard</a>
 						</li>
 					</ul>
 				</li>
+				<?php 
+					}else{
+						?>
+				<li>
+					<a href="#!" class="btn-sideBar-SubMenu">
+						<i class="zmdi zmdi-accounts-list-alt zmdi-hc-fw"></i>Mi Grupo<i class="zmdi zmdi-caret-down pull-right"></i>
+					</a>
+					<ul class="list-unstyled full-box">
+						<li>
+							<a href="<?php echo SERVERURLL?>anteproyectof/"><i class="zmdi zmdi-folder zmdi-hc-fw"></i>Formato Ante-Proyecto</a>
+						</li>
+					</ul>
+				</li>
+				<?php
+					}
+						?>
+
 			<br>
-			<br>
-			<br>
+			
 		<figcaption class="text-center text-titles">Programa de Ingeniería de Sistemas y Computación</figcaption>		
 		</div>
 	</section>

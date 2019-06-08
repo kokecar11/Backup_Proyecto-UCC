@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="page-header">
-        <h1 class="text-titles"><i class="zmdi zmdi-balance zmdi-hc-fw"></i> Administración <small>GRUPOS</small></h1>
+        <h1 class="text-titles"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Administración <small>GRUPOS</small></h1>
     </div>
-    <p class="lead">Creacion de Grupos de Proyecto y Ante-Proyecto!</p>
+    <p class="lead">Creación de Grupos de Proyecto y Ante-Proyecto!</p>
 </div>
 
 <div class="container-fluid">
@@ -12,11 +12,11 @@
                 <i class="zmdi zmdi-plus"></i> &nbsp; NUEVO GRUPO
             </a>
         </li>
-        <!--<li>
-            <a href="<?php echo SERVERURLL?>grouplist" class="btn btn-success">
-                <i class="zmdi zmdi-format-list-bulleted"></i> &nbsp; LISTA DE GRUPOS
+        <li>
+            <a href="<?php echo SERVERURLL?>jurados/" class="btn btn-success">
+                <i class="zmdi zmdi-format-list-bulleted"></i> &nbsp; ASIGNAR JURADOS A GRUPOS
             </a>
-        </li>-->
+        </li>
     </ul>
 </div>
 
@@ -58,38 +58,23 @@
                         <div class="row">
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Codigo de Integrante - 1*</label>
+                                        <label class="control-label">Código de Integrante - 1*</label>
                                         <input pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{1,50}" class="form-control" type="text" name="Estudiante1-reg" required="" maxlength="50">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Codigo de Integrante - 2</label>
+                                        <label class="control-label">Código de Integrante - 2</label>
                                         <input pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{1,50}" class="form-control" type="text" name="Estudiante2-reg" maxlength="50">
                                         </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Codigo de Asesor*</label>
+                                        <label class="control-label">Código de Asesor*</label>
                                         <input pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{1,50}" class="form-control" type="text" name="Asesor-reg" required="" maxlength="50">
                                     </div>
                                 </div>
                             </div> 
-                        <div class="row">    
-                                <div class="col-xs-12 col-sm-6">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Codigo de Jurado - 1*</label>
-                                        <input pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{1,50}" class="form-control" type="text" name="Jurado1-reg" required="" maxlength="50">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Codigo de Jurado - 2</label>
-                                        <input pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{1,50}" class="form-control" type="text" name="Jurado2-reg" required="" maxlength="50">
-                                    </div>
-                                </div>
-                            </div>                        
-                        </div>
                     </div>
                 </fieldset>
                 <br>

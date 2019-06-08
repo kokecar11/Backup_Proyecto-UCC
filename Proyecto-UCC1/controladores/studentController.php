@@ -17,6 +17,8 @@
                     $stuemail=mainModel::clean_cadn($_POST['stu-email-reg']);
                     $stupass1=mainModel::clean_cadn($_POST['stu-password1-reg']);
                     $stupass2=mainModel::clean_cadn($_POST['stu-password2-reg']);
+
+                    $cuentastu=$stuemail;
                     if($stupass1!=$stupass2){
                         $stualert=[
                             "Alerta"=>"simple",
@@ -25,9 +27,9 @@
                             "Tipo"=>"error"
                         ];
                     }else{
-                        
+                        $stuemail.='@ucatolica.edu.co';
                         if($stuemail!=""){
-                            $stuconsult=mainModel::exe_query_simple("SELECT Acc_email FROM cuenta WHERE Acc_email='$stuemail@ucatolica.edu.co'");
+                            $stuconsult=mainModel::exe_query_simple("SELECT Acc_email FROM cuenta WHERE Acc_email='$stuemail'");
                             $stuec = $stuconsult->rowCount();
                         }else{
                             $stuec=0;
@@ -46,10 +48,10 @@
                             
                             $studata_acc=[
                                 "codigo"=>"$stucodigo",
-                                "acuenta"=>"$stuemail",
+                                "acuenta"=>"$cuentastu",
                                 "names"=>"$stunames",
                                 "lastnames"=>"$stulastnames",
-                                "email"=>"$stuemail@ucatolica.edu.co",
+                                "email"=>"$stuemail",
                                 "pass"=>"$stuclave",
                                 "estado"=>1,
                                 "types"=>"Estudiante",
@@ -73,7 +75,7 @@
                                         "Tipo"=>"success"
                                     ];
 
-                                    $mailstu=mainModel::send_email_activate($email,$names,$pass1);
+                                    $mailstu=mainModel::send_email_activate($stuemail,$stunames,$stupass1);
                                 }else{
                                     mainModel::delete_account("$stucodigo");
                                     $stualert=[
@@ -98,24 +100,38 @@
         }
 
 
-        public function pag_admin_controller($pagstu,$regstu,$coddstu){
+        public function pag_student_controller($pagstu,$regstu,$coddstu,$searchstu){
 
             $pagstu=mainModel::clean_cadn($pagstu);
             $regstu=mainModel::clean_cadn($regstu);
         
             $coddstu=mainModel::clean_cadn($coddstu);
+            $searchstu=mainModel::clean_cadn($searchstu);
             $tablestu="";
 
             $pagstu= (isset($pagstu)&& $pagstu>0) ? (int)$pagstu:1;
             $initpgstu=($pagstu>0) ? (($pagstu*$regstu)-$regstu): 0;
 
+
+            if(isset($searchstu)&& $searchstu!=""){
+                $consult_stu="SELECT SQL_CALC_FOUND_ROWS Acc_cod,Acc_names,Acc_lastnames,Acc_email FROM cuenta 
+                WHERE ((Acc_type='Estudiante') AND (Acc_cod LIKE '%$searchstu%')) ORDER BY Acc_names ASC LIMIT $initpgstu,$regstu";
+
+                $pagurlstu = "studentsearch";
+            }else{
+                $consult_stu="SELECT SQL_CALC_FOUND_ROWS Acc_cod,Acc_names,Acc_lastnames,Acc_email FROM cuenta 
+                WHERE Acc_type='Estudiante' ORDER BY Acc_names ASC LIMIT $initpgstu,$regstu";
+                $pagurlstu = "studentlist";
+            }
+
+
             $connectstu=mainModel::connection();
 
             /*$datas=$connect->query("SELECT SQL_CALC_FOUND_ROWS Acc_cod,Acc_names,Acc_lastnames,Acc_email FROM cuenta 
-                                WHERE Acc_cod!='$codd' ORDER BY Acc_names ASC LIMIT $initpg,$reg");*/
+                                WHERE Acc_cod!='$codd' ORDER BY Acc_names ASC LIMIT $initpg,$reg");
             $datastu=$connectstu->query("SELECT SQL_CALC_FOUND_ROWS Acc_cod,Acc_names,Acc_lastnames,Acc_email FROM cuenta 
-                                WHERE Acc_type='Estudiante' ORDER BY Acc_names ASC LIMIT $initpgstu,$regstu");
-
+                                WHERE Acc_type='Estudiante' ORDER BY Acc_names ASC LIMIT $initpgstu,$regstu");*/
+            $datastu=$connectstu->query($consult_stu);
             $datastu=$datastu->fetchAll();
 
             $totalstu=$connectstu->query("SELECT FOUND_ROWS()");
@@ -127,7 +143,7 @@
                             <table class="table table-hover text-center">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">CODIGO</th>
+                                        <th class="text-center">CÓDIGO</th>
                                         <th class="text-center">NOMBRES</th>
                                         <th class="text-center">APELLIDOS</th>
                                         <th class="text-center">CORREO</th>
@@ -196,7 +212,7 @@
                              </a></li>';
                 }else{
                     $tablestu.='<li>
-                             <a href="'.SERVERURLL.'studentlist/'.($pagstu-1).'/">
+                             <a href="'.SERVERURLL.$pagurlstu.'/'.($pagstu-1).'/">
                                 <i class="zmdi zmdi-arrow-left"></i>
                              </a></li>';
 
@@ -206,11 +222,11 @@
 
                     if($pagstu==$i){
                         $tablestu.='<li class="active">
-                             <a href="'.SERVERURLL.'studentlist/'.$i.'/">'.$i.'</a></li>';
+                             <a href="'.SERVERURLL.$pagurlstu.'/'.$i.'/">'.$i.'</a></li>';
 
                     }else{
                         $tablestu.='<li>
-                             <a href="'.SERVERURLL.'studentlist/'.$i.'/">'.$i.'</a></li>';
+                             <a href="'.SERVERURLL.$pagurlstu.'/'.$i.'/">'.$i.'</a></li>';
 
                     }
                 }
@@ -223,7 +239,7 @@
                              </a></li>';
                 }else{
                     $tablestu.='<li>
-                    <a href="'.SERVERURLL.'studentlist/'.($pagstu+1).'/">
+                    <a href="'.SERVERURLL.$pagurlstu.'/'.($pagstu+1).'/">
                         <i class="zmdi zmdi-arrow-right"></i>
                     </a></li>';
 

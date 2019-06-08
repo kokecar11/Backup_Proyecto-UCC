@@ -23,7 +23,7 @@ $(document).ready(function(){
 		  	confirmButtonText: '<i class="zmdi zmdi-run"></i> Si, Salir!',
 		  	cancelButtonText: '<i class="zmdi zmdi-close-circle"></i> No, Cancelar!'
 		}).then(function () {
-			window.location.href="http://localhost/Proyecto-UCC/";
+			window.location.href="http://www.proyectos-ucc.tk/Proyecto-UCC1/";
 		});
 	});
 	$('.btn-menu-dashboard').on('click', function(e){

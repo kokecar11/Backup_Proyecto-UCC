@@ -8,31 +8,46 @@
 <div class="container-fluid">
     <ul class="breadcrumb breadcrumb-tabs">
         <li>
-            <a href="<?php echo SERVERURLL?>student/" class="btn btn-info">
+            <a href="<?php echo SERVERURLL;?>student/" class="btn btn-info">
                 <i class="zmdi zmdi-plus"></i> &nbsp; NUEVO ESTUDIANTE
             </a>
         </li>
         <li>
-            <a href="<?php echo SERVERURLL?>studentlist/" class="btn btn-success">
+            <a href="<?php echo SERVERURLL;?>studentlist/" class="btn btn-success">
                 <i class="zmdi zmdi-format-list-bulleted"></i> &nbsp; LISTA DE ESTUDIANTES
             </a>
         </li>
         <li>
-            <a href="<?php echo SERVERURLL?>studentsearch/" class="btn btn-primary">
+            <a href="<?php echo SERVERURLL;?>studentsearch/" class="btn btn-primary">
                 <i class="zmdi zmdi-search"></i> &nbsp; BUSCAR ESTUDIANTES
             </a>
         </li>
     </ul>
 </div>
 
+<?php 
+    require_once "./controladores/studentController.php";
+    $insstudent= new studentController();
+
+    if(isset($_POST['search_student'])){
+        $_SESSION['search_stu']=$_POST['search_student'];
+    }
+
+    if(isset($_POST['search_destroy_student'])){
+        unset($_SESSION['search_stu']);
+
+    }
+
+    if(!isset( $_SESSION['search_stu']) && empty( $_SESSION['search_stu'])):
+?> 
 
 <div class="container-fluid">
-    <form class="well">
+    <form class="well" method="POST" action="">
         <div class="row">
             <div class="col-xs-12 col-md-8 col-md-offset-2">
                 <div class="form-group label-floating">
-                    <span class="control-label">¿A quién estas buscando?</span>
-                    <input class="form-control" type="text" name="search_client_init" required="">
+                    <span class="control-label">¿A quién estas buscando?, Digita el Codigo.</span>
+                    <input class="form-control" type="text" name="search_student" required="">
                 </div>
             </div>
             <div class="col-xs-12">
@@ -43,12 +58,13 @@
         </div>
     </form>
 </div>
+    <?php else:?>
 
 <div class="container-fluid">
-    <form class="well">
-        <p class="lead text-center">Su última búsqueda  fue <strong>“Busqueda”</strong></p>
+    <form class="well" method="POST" action="">
+        <p class="lead text-center">Su último Codigo buscado fue <strong>"<?php echo $_POST['search_student'];?>"</strong></p>
         <div class="row">
-            <input class="form-control" type="hidden" name="search_client_destroy" required="">
+            <input class="form-control" type="hidden" name="search_destroy_student" value="1">
             <div class="col-xs-12">
                 <p class="text-center">
                     <button type="submit" class="btn btn-danger btn-raised btn-sm"><i class="zmdi zmdi-delete"></i> &nbsp; Eliminar búsqueda</button>
@@ -58,66 +74,19 @@
     </form>
 </div>
 
-<!-- Panel listado de busqueda de clientes 
+<!-- Panel listado de busqueda de administradores -->
 <div class="container-fluid">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title"><i class="zmdi zmdi-search"></i> &nbsp; BUSCAR CLIENTE</h3>
+            <h3 class="panel-title"><i class="zmdi zmdi-search"></i> &nbsp; BUSCAR ESTUDIANTES</h3>
         </div>
         <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-hover text-center">
-                    <thead>
-                        <tr>
-                            <th class="text-center">#</th>
-                            <th class="text-center">DNI</th>
-                            <th class="text-center">NOMBRES</th>
-                            <th class="text-center">APELLIDOS</th>
-                            <th class="text-center">TELÉFONO</th>
-                            <th class="text-center">A. CUENTA</th>
-                            <th class="text-center">A. DATOS</th>
-                            <th class="text-center">ELIMINAR</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>0976541234</td>
-                            <td>Nombres</td>
-                            <td>Apellidos</td>
-                            <td>Telefono</td>
-                            <td>
-                                <a href="#!" class="btn btn-success btn-raised btn-xs">
-                                    <i class="zmdi zmdi-refresh"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#!" class="btn btn-success btn-raised btn-xs">
-                                    <i class="zmdi zmdi-refresh"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <form>
-                                    <button type="submit" class="btn btn-danger btn-raised btn-xs">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <nav class="text-center">
-                <ul class="pagination pagination-sm">
-                    <li class="disabled"><a href="javascript:void(0)">«</a></li>
-                    <li class="active"><a href="javascript:void(0)">1</a></li>
-                    <li><a href="javascript:void(0)">2</a></li>
-                    <li><a href="javascript:void(0)">3</a></li>
-                    <li><a href="javascript:void(0)">4</a></li>
-                    <li><a href="javascript:void(0)">5</a></li>
-                    <li><a href="javascript:void(0)">»</a></li>
-                </ul>
-            </nav>
+            <?php
+                    $pag= explode("/",$_GET['views']);
+                    echo $insstudent->pag_student_controller($pag[1],10,$_SESSION['User_pucc'],$_SESSION['search_stu']);
+                 
+                 ?>  
         </div>
     </div>
-</div>-->
+</div>
+    <?php endif;?>

@@ -3,7 +3,7 @@
     <div class="page-header">
         <h1 class="text-titles"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Administración <small>EVENTOS</small></h1>
     </div>
-    <p class="lead">Registrar los nuevos Eventos para los Grupos.</p>
+    <p class="lead">Registrar los Eventos para los Grupos.</p>
 </div>
 
 <div class="container-fluid">
@@ -14,7 +14,7 @@
         <div class="panel-body">
         <form action = "<?php echo SERVERURLL;?>ajax/eventAjax.php" method = "POST" data-form = "save" class="FormularioAjax" autocomplete="off" enctype="multipart/form-data">
             <fieldset>
-                <legend><i class="zmdi zmdi-calendar"></i> &nbsp;Buscar Grupo </legend>
+                <legend><i class="zmdi zmdi-calendar"></i> &nbsp;Codigo de Grupo </legend>
                 </fieldset>
                   <div class="container-fluid">
                         <div class="row">
@@ -24,27 +24,14 @@
                                     <input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]{1,15}" class="form-control" type="text" name="cod-gpevent" required="" maxlength="10">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6">
-                                <figcaption class="text-center text-titles"><?php ?></figcaption> 
-                            </div>
-                            <div class="col-xs-12 col-sm-6">
-                                <figcaption class="text-center text-titles"><?php ?></figcaption> 
-                            </div>
-                        </div>   
+                        </div> 
                   </div>
                   
                 </fieldset>
-                <p class="text-center" style="margin-top: 20px;">
-                    <button type="submit" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i>Buscar Grupo</button>
-                </p>
-                <div class="RespuestaAjax"></div>
-                
-                  
+                             
                     <br>
             
-            <fieldset>
+             <fieldset>
                 <legend><i class="zmdi zmdi-calendar"></i> &nbsp;Datos de Evento </legend>
                 </fieldset>
                   <div class="container-fluid">
@@ -52,7 +39,7 @@
                             <div class="col-xs-12 col-sm-6">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Titulo de Evento *</label>
-                                        <input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,30}" class="form-control" type="text" name="title_event" required="" maxlength="30">
+                                        <input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,30}" class="form-control" type="text" name="title_event"  maxlength="30">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
@@ -61,10 +48,11 @@
                                         <textarea name="descrip_event" class="form-control" rows="2"></textarea>
                                     </div>
                                 </div>
-                        </div>                               
+                        </div>
+                        <legend><i class="zmdi zmdi-calendar"></i> &nbsp; Fecha de Entrega</legend>                               
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
-                                    <legend><i class="zmdi zmdi-calendar"></i> &nbsp; Fecha de Entrega</legend>
+                                   
                                         <?php
                                                             //combobox dia 
                                             echo "<select name='añof' class='cboForm' id='año'>";  

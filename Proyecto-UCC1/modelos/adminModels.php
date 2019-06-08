@@ -26,10 +26,12 @@
                     $query->bindParam(":codigo_adm",$codigo_admn);
 
                 }elseif($tipo=="Count"){
-                    $query=mainModel::connection()->prepare("SELECT idProfesor FROM profesor ");
+                    $query=mainModel::connection()->prepare("SELECT DISTINCT(Cuenta_Acc_cod) FROM profesor");
                 }
                 $query->execute();
                 return $query;
             }
+
+
 
         }

@@ -17,6 +17,7 @@
                 $pass1=mainModel::clean_cadn($_POST['password1-reg']);
                 $pass2=mainModel::clean_cadn($_POST['password2-reg']);
                 $cuentat=$email;
+
                     if($pass1!=$pass2){
                         $alert=[
                             "Alerta"=>"simple",
@@ -140,7 +141,7 @@
                             <table class="table table-hover text-center">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">CODIGO</th>
+                                        <th class="text-center">CÓDIGO</th>
                                         <th class="text-center">NOMBRES</th>
                                         <th class="text-center">APELLIDOS</th>
                                         <th class="text-center">CORREO</th>
@@ -264,4 +265,4 @@
 
 
 
-    }   
+}
