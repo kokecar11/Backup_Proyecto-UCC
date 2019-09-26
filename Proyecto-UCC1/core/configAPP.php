@@ -2,8 +2,8 @@
 
     const SERVER="localhost";
     const DB="u957611661_ucc";
-    const USER="u957611661_admin";
-    const PASSWORD="c4rp1nt3r0";
+    const USER="root";
+    const PASSWORD="root";
 
     const GEST_DB="mysql:host=".SERVER.";dbname=".DB;
 

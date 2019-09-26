@@ -87,25 +87,8 @@ CREATE TABLE `cuenta` (
 --
 
 INSERT INTO `cuenta` (`Acc_cod`, `Acc_account`, `Acc_names`, `Acc_lastnames`, `Acc_email`, `Acc_pass`, `Acc_estado`, `Acc_type`, `Acc_photo`) VALUES
-(0, 'coordinador', 'Coordinador', 'Proyectos', 'coordinador@gmail.com', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Coordinador', NULL),
-(123, 'aaa', 'aaa', 'bbb', 'aaa@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Profesor', ''),
-(123456, 'fperez', 'Fernando', 'Perez', 'fperez@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Profesor', ''),
-(123789, 'yagarzon75', 'Lorena', 'Maldonado', 'yagarzon75@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Profesor', ''),
-(456321, 'nmolina', 'Nasly Carolina', 'Molina', 'nmolina@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Profesor', ''),
-(539407, 'jacarpintero19', 'Jorge Armando', 'Carpintero Suarez', 'jacarpintero19@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Estudiante', ''),
-(625726, 'amgil26', 'Andres', 'GIl', 'amgil26@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Estudiante', ''),
-(625727, 'maarboleda27', 'Michael Andres', 'Arboleda', 'maarboleda27@ucatolica.edu.co', 'WjhYdGxBTUE5N2hlMlc1RmxtcHNSQT09', 1, 'Estudiante', ''),
-(625752, 'lmmolano52', 'Leidy Milena', 'Molano', 'lmmolano52@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Estudiante', ''),
-(625783, 'jacarpintero19', 'Jorge Armando', 'Carpintero Suarez', 'jacarpintero19@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Estudiante', ''),
-(625784, 'jrhernandez84', 'Juanita', 'Rhenals Hernandez', 'jrhernandez84@ucatolica.edu.co', 'd1I2MlBFZWlLbjM2U201Njc4c1ZGdz09', 1, 'Estudiante', ''),
-(625799, 'yagarzon99', 'Yuliana', 'Garzon Torres', 'yagarzon99@ucatolica.edu.co', 'd1I2MlBFZWlLbjM2U201Njc4c1ZGdz09', 1, 'Estudiante', ''),
-(753196, 'jatoro', 'Jasser', 'Anillo Toro', 'jatoro@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Profesor', ''),
-(5394032, 'lclozano07', 'Jorge Armando', 'Carpintero Suarez', 'lclozano07@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Estudiante', ''),
-(19356688, 'aasanchez10', 'Arndres Alejandro', 'Sanchez Mora', 'aasanchez10@ucatolica.edu.co', 'WjhYdGxBTUE5N2hlMlc1RmxtcHNSQT09', 1, 'Profesor', ''),
-(38141201, 'Ybonilla10', 'Yenny Paola', 'Bonilla Barrera', 'Ybonilla10@ucatolica.edu.co', 'WjhYdGxBTUE5N2hlMlc1RmxtcHNSQT09', 1, 'Profesor', ''),
-(67000123, 'farbelaez', 'Felipe', 'Arbelaez', 'farbelaez@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Estudiante', ''),
-(79319763, 'wdarioaa', 'Willian Dario', 'Avila Mendez', 'wdarioaa@ucatolica.edu.co', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Profesor', ''),
-(1018505077, 'jacarpintero19', 'Jorge', 'Carpintero', '', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Profesor', '');
+(0, 'coordinador', 'Coordinador', 'Proyectos', 'coordinador@gmail.com', 'Zk1vWlNMUDQ2Zlk3UHU1dU1PamhaZz09', 1, 'Coordinador', NULL);
+
 
 -- --------------------------------------------------------
 
