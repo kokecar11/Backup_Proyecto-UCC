@@ -4,6 +4,8 @@
 Pagina Web para el control de los ante-proyecto y proyectos.
 
 Instalación (Servidor Local)
+
+
 *Instalar PhP
 *Instalar ApacheServer 
 *Instalar MySQL 
