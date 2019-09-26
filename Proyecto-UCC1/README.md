@@ -19,6 +19,9 @@ Instalación (Servidor Local)
 	
 	
 	-La Base de Datos se encuentra en la Carpeta (BD)
+	
+	
+	-Importa el archivo sql (u957611661_ucc.sql)
 
 	
 *Usuario -> (coordinador) Password->(coordinador)
